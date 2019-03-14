@@ -13,7 +13,9 @@ import { LendCdPage } from "../pages/lend-cd/lend-cd";
 import { SettingsPage } from "../pages/settings/settings";
 import { TabsPage } from "../pages/tabs/tabs";
 import { MainService } from "../services/main.service";
+import { AuthService } from '../services/auth.service';
 import { OptionsPage } from "../pages/options/options";
+import { AuthPage } from "../pages/auth/auth";
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { OptionsPage } from "../pages/options/options";
     LendCdPage,
     SettingsPage,
     TabsPage,
-    OptionsPage
+    OptionsPage,
+    AuthPage
   ],
   imports: [
     BrowserModule,
@@ -41,13 +44,15 @@ import { OptionsPage } from "../pages/options/options";
     LendCdPage,
     SettingsPage,
     TabsPage,
-    OptionsPage
+    OptionsPage,
+    AuthPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    MainService
+    MainService,
+    AuthService
   ]
 })
 export class AppModule {}

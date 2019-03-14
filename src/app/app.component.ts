@@ -16,6 +16,9 @@ export class MyApp {
   tabsPage:any = TabsPage;
   settingsPage:any = SettingsPage;
   authPage:any = AuthPage;
+
+  isAuth;
+
   @ViewChild('content') content: NavController;
 
   constructor(platform: Platform,

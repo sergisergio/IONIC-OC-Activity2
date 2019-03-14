@@ -13,6 +13,7 @@ export class AuthPage implements OnInit {
 
   mode: string;
   authForm: FormGroup;
+  errorMessage;
 
   constructor(private authService: AuthService,
               public navParams: NavParams,

@@ -1,0 +1,8 @@
+{
+  "name": "IONIC-OC-Activity2",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

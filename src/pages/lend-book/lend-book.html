@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons>
+      <button ion-button clear (click)="dismissModal()">Fermer</button>
+    </ion-buttons>
+
+    <ion-title>{{ book.name }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>{{ book.name }}</ion-card-header>
+    <ion-card-content>
+      <!--<p *ngFor="let line of appareil.description">{{ line }}</p>-->
+      Contenu
+    </ion-card-content>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button
+                  ion-button
+                  full
+                  color="danger"
+                  [disabled]="book.isLent"
+                  (click)="onToggle()">
+            <ion-icon name="arrow-round-forward"></ion-icon>
+            Prêter
+          </button>
+        </ion-col>
+        <ion-col>
+          <button
+                  ion-button
+                  full
+                  color="success"
+                  [disabled]="!book.isLent"
+                  (click)="onToggle()">
+            <ion-icon name="arrow-round-back"></ion-icon>
+            Rendre
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

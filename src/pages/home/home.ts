@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { MenuController, NavController } from 'ionic-angular';
+import {BookListPage} from "../book-list/book-list";
 
 @Component({
   selector: 'page-home',
@@ -7,8 +8,17 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+              public menuCtrl: MenuController) {
 
+  }
+
+  onGoToBooks() {
+    this.navCtrl.push(BookListPage);
+  }
+
+  onToggleMenu() {
+    this.menuCtrl.open();
   }
 
 }

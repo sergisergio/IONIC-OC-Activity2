@@ -9,9 +9,7 @@ import {BookListPage} from "../book-list/book-list";
 export class HomePage {
 
   constructor(public navCtrl: NavController,
-              public menuCtrl: MenuController) {
-
-  }
+              public menuCtrl: MenuController) {}
 
   onGoToBooks() {
     this.navCtrl.push(BookListPage);

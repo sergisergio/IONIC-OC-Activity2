@@ -1,3 +1,10 @@
 page-tabs {
 
 }
+
+.tabs-md .tab-button { color: #FFF; }
+.ion-button-icon { color: #FFF; }
+.tabs-md .tab-button-icon { color: #FFF; }
+.ion-tabs-disc, .ion-tabs-book { color: #488aff; }
+.ion-tabs-disc[aria-selected=true], .ion-tabs-book[aria-selected=true]  { color: #488aff; }
+.tab-button-icon[aria-selected=true]  { color: #488aff; }

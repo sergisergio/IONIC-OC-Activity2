@@ -10,10 +10,9 @@
 
 <ion-content padding>
   <ion-card>
-    <ion-card-header>{{ book.name }}</ion-card-header>
+    <ion-card-header>{{ book.name }}<br> ({{ book.author }})</ion-card-header>
     <ion-card-content>
-      <!--<p *ngFor="let line of appareil.description">{{ line }}</p>-->
-      Contenu
+      {{ book.content }}
     </ion-card-content>
     <ion-grid>
       <ion-row>

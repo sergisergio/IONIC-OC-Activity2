@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Cd } from "../../models/Cd";
 import { MainService } from "../../services/main.service";
+import {NgForm} from "@angular/forms";
 
 @Component({
     selector: 'page-lend-cd',
@@ -28,11 +29,19 @@ export class LendCdPage {
     }
 
     onToggle() {
-        this.mainService.onLendMedium(this.index, 'cd');
+        this.mainService.onLendMedium(this.index, 'cd', '');
+        this.dismissModal();
     }
 
     dismissModal() {
         this.viewCtrl.dismiss();
+    }
+
+    onSubmitForm(form: NgForm) {
+        console.log(form.value);
+        const borrower = form.value['borrower'];
+        this.mainService.onLendMedium(this.index, 'cd', borrower);
+        this.dismissModal();
     }
 
 }

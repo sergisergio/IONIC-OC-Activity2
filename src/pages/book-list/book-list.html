@@ -15,6 +15,7 @@
           (click)="onLoadBook(i)">
     <ion-icon name="book" [color]="book.isLent ? 'danger' : 'secondary'"></ion-icon>
     {{ book.name }}
+    <p *ngIf="book.isLent">emprunté par {{ book.borrower }}</p>
   </button>
 </ion-content>
 

@@ -16,6 +16,7 @@
     <ion-icon name="musical-notes" [color]="cd.isLent ? 'danger' : 'secondary'"></ion-icon>
     {{ cd.name }}<br>
     {{ cd.band }}
+    <p *ngIf="cd.isLent">emprunté par {{ cd.borrower }}</p>
   </button>
 </ion-content>
 

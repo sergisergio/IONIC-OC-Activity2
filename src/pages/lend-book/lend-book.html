@@ -16,7 +16,7 @@
     </ion-card-content>
     <ion-grid>
       <ion-row>
-        <ion-col>
+        <!--<ion-col>
           <button
                   ion-button
                   full
@@ -26,19 +26,36 @@
             <ion-icon name="arrow-round-forward"></ion-icon>
             Prêter
           </button>
-        </ion-col>
+        </ion-col>-->
         <ion-col>
           <button
                   ion-button
                   full
                   color="success"
-                  [disabled]="!book.isLent"
+                  *ngIf="book.isLent"
                   (click)="onToggle()">
             <ion-icon name="arrow-round-back"></ion-icon>
             Rendre
           </button>
         </ion-col>
       </ion-row>
+      <form *ngIf="!book.isLent" #f="ngForm" (ngSubmit)="onSubmitForm(f)">
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              Emprunteur
+            </ion-label>
+            <ion-input placeholder="nom de la personne"
+                       [(ngModel)]="borrower"
+                       name="borrower" required></ion-input>
+          </ion-item>
+        </ion-list>
+        <button type="submit"
+                ion-button
+                full color="secondary" [disabled]="f.invalid">
+          Prêter
+        </button>
+      </form>
     </ion-grid>
   </ion-card>
 </ion-content>

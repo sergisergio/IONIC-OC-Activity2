@@ -27,7 +27,7 @@ export class CdListPage implements OnInit, OnDestroy{
     ngOnInit() {
         this.cdsSubscription = this.mainService.cds$.subscribe(
             (cds: Cd[]) => {
-                this.cdsList = cds.slice();
+                this.cdsList = cds;
             }
         );
         this.mainService.emitCds();

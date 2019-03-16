@@ -30,7 +30,7 @@ export class BookListPage implements OnInit, OnDestroy {
   ngOnInit() {
      this.booksSubscription = this.mainService.books$.subscribe(
          (books: Book[]) => {
-             this.booksList = books.slice();
+             this.booksList = books;
          });
      this.mainService.emitBooks();
     }

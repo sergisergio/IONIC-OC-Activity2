@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AlertController, NavController, NavParams, ViewController } from 'ionic-angular';
 import { Cd } from "../../models/Cd";
 import { MainService } from "../../services/main.service";
-import {NgForm} from "@angular/forms";
+import { NgForm } from "@angular/forms";
 
 @Component({
     selector: 'page-lend-cd',

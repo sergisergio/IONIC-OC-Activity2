@@ -9,15 +9,17 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class MainService {
 
-    private booksList: Book[] = [];
-    private cdsList: Cd[] = [];
+    //private booksList: Book[] = [];
+    //private cdsList: Cd[] = [];
 
     books$ = new Subject<Book[]>();
     cds$ = new Subject<Cd[]>();
 
-    constructor(private storage: Storage) {}
+    constructor(private storage: Storage) {
+        //this.fetchList();
+    }
 
-    /*booksList: Book[] = [
+    booksList: Book[] = [
         {
             name: 'Croc-Blanc',
             author: 'Jack London',
@@ -63,23 +65,27 @@ export class MainService {
             isLent: true,
             borrower: 'Larry Bird'
         }
-    ];*/
+    ];
 
     emitBooks() {
-        this.books$.next(this.booksList);
+        this.books$.next(this.booksList.slice());
     }
 
     emitCds() {
-        this.cds$.next(this.cdsList);
+        this.cds$.next(this.cdsList.slice());
     }
 
     onLendMedium(index:number,list:string, borrower: string){
         if (list == 'book') {
             this.booksList[index].isLent = !this.booksList[index].isLent;
             this.booksList[index].borrower = borrower;
+            this.storage.set('books', this.booksList);
+            this.emitBooks();
         } else if (list == 'cd') {
             this.cdsList[index].isLent = !this.cdsList[index].isLent;
             this.cdsList[index].borrower = borrower;
+            this.storage.set('cds', this.cdsList);
+            this.emitCds();
         }
     }
 
@@ -160,5 +166,29 @@ export class MainService {
             }
         );
     }
+
+    /*fetchList() {
+        this.storage.get('books').then(
+            (booksList) => {
+                booksList && booksList.length ? this.booksList = booksList.slice() : 0;
+                this.emitBooks();
+            }
+        ).catch(
+            (error) => {
+                console.log(`Books Retrieve error : ${error}`);
+            }
+        );
+
+        this.storage.get('cds').then(
+            (cdsList) => {
+                cdsList && cdsList.length ? this.cdsList = cdsList.slice() : 0;
+                this.emitCds();
+            }
+        ).catch(
+            (error) => {
+                console.log(`Cds Retrieve error : +  ${error}`);
+            }
+        );
+    }*/
 
 }

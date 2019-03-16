@@ -10,5 +10,25 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Modifiez les réglages de l'application ici !</p>
+  <ion-card>
+    <ion-card-header>Données</ion-card-header>
+    <ion-card-content>
+      <button
+              ion-button
+              full
+              color="success"
+              (click)="onSave()">
+        <ion-icon name="arrow-round-forward"></ion-icon>
+        Sauvegarder les données
+      </button>
+      <button
+              ion-button
+              full
+              color="success"
+              (click)="onFetch()">
+        <ion-icon name="arrow-round-back"></ion-icon>
+        Récupérer les données
+      </button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

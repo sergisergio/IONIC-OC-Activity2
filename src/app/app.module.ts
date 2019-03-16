@@ -16,6 +16,8 @@ import { MainService } from "../services/main.service";
 import { AuthService } from '../services/auth.service';
 import { OptionsPage } from "../pages/options/options";
 import { AuthPage } from "../pages/auth/auth";
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { AuthPage } from "../pages/auth/auth";
   ],
   imports: [
     BrowserModule,
+    IonicStorageModule.forRoot(),
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

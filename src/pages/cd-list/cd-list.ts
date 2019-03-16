@@ -1,16 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuController, ModalController } from 'ionic-angular';
 import { LendCdPage } from "../lend-cd/lend-cd";
 import { Cd } from "../../models/Cd";
 import { MainService } from "../../services/main.service";
+import { Subscription } from 'rxjs/Subscription';
+
 
 @Component({
     selector: 'page-cd-list',
     templateUrl: 'cd-list.html',
 })
-export class CdListPage {
+export class CdListPage implements OnInit, OnDestroy{
 
     cdsList: Cd[];
+    cdsSubscription: Subscription;
 
     constructor(public modalCtrl: ModalController,
                 private mainService: MainService,
@@ -19,6 +22,15 @@ export class CdListPage {
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad CdListPage');
+    }
+
+    ngOnInit() {
+        this.cdsSubscription = this.mainService.cds$.subscribe(
+            (cds: Cd[]) => {
+                this.cdsList = cds.slice();
+            }
+        );
+        this.mainService.emitCds();
     }
 
     onLoadCd(index: number) {
@@ -32,5 +44,9 @@ export class CdListPage {
 
     onToggleMenu() {
         this.menuCtrl.open();
+    }
+
+    ngOnDestroy() {
+        this.cdsSubscription.unsubscribe();
     }
 }

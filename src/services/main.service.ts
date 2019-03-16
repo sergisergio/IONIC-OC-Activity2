@@ -1,8 +1,23 @@
 import { Book } from "../models/Book";
 import { Cd } from "../models/Cd";
+import { Subject } from "rxjs";
+import * as firebase from 'firebase';
+import DataSnapshot = firebase.database.DataSnapshot;
+import { Injectable } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
+@Injectable()
 export class MainService {
-    booksList: Book[] = [
+
+    private booksList: Book[] = [];
+    private cdsList: Cd[] = [];
+
+    books$ = new Subject<Book[]>();
+    cds$ = new Subject<Cd[]>();
+
+    constructor(private storage: Storage) {}
+
+    /*booksList: Book[] = [
         {
             name: 'Croc-Blanc',
             author: 'Jack London',
@@ -48,7 +63,15 @@ export class MainService {
             isLent: true,
             borrower: 'Larry Bird'
         }
-    ];
+    ];*/
+
+    emitBooks() {
+        this.books$.next(this.booksList);
+    }
+
+    emitCds() {
+        this.cds$.next(this.cdsList);
+    }
 
     onLendMedium(index:number,list:string, borrower: string){
         if (list == 'book') {
@@ -59,4 +82,83 @@ export class MainService {
             this.cdsList[index].borrower = borrower;
         }
     }
+
+    saveData(book: Book, cd: Cd) {
+        return new Promise((resolve, reject) => {
+            firebase.database().ref('books').set(this.booksList).then(
+                (data: DataSnapshot) => {
+                    resolve(data);
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+            firebase.database().ref('cds').set(this.cdsList).then(
+                (data: DataSnapshot) => {
+                    resolve(data);
+                },
+                (error) => {
+                    reject(error);
+                }
+            );
+            this.booksList.push(book);
+            this.cdsList.push(cd);
+            this.saveList();
+            this.emitBooks();
+            this.emitCds();
+        });
+
+    }
+
+    retrieveData() {
+        return new Promise((resolve, reject) => {
+            firebase.database().ref('books').once('value').then(
+                (data: DataSnapshot) => {
+                    this.booksList = data.val();
+                    this.emitBooks();
+                    resolve('Données récupérées avec succès !');
+                }, (error) => {
+                    reject(error);
+                }
+            );
+            firebase.database().ref('cds').once('value').then(
+                (data: DataSnapshot) => {
+                    this.cdsList = data.val();
+                    this.emitCds();
+                    resolve('Données récupérées avec succès !');
+                }, (error) => {
+                    reject(error);
+                }
+            );
+        });
+    }
+
+    saveList() {
+        this.storage.set('books', this.booksList);
+        this.storage.set('cds', this.cdsList);
+
+    }
+
+    fetchListBook() {
+        this.storage.get('books').then(
+            (list) => {
+            //    if (list && list.length) {
+                    this.booksList = list.slice();
+            //    }
+                this.emitBooks();
+            }
+        );
+    }
+
+    fetchListCd() {
+        this.storage.get('cds').then(
+            (list) => {
+                if (list && list.length) {
+                    this.cdsList = list.slice();
+                }
+                this.emitCds();
+            }
+        );
+    }
+
 }

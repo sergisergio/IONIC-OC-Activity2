@@ -89,7 +89,7 @@ export class MainService {
         }
     }
 
-    saveData(book: Book, cd: Cd) {
+    saveData() {
         return new Promise((resolve, reject) => {
             firebase.database().ref('books').set(this.booksList).then(
                 (data: DataSnapshot) => {

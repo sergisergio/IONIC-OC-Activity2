@@ -9,17 +9,17 @@ import { Storage } from '@ionic/storage';
 @Injectable()
 export class MainService {
 
-    //private booksList: Book[] = [];
-    //private cdsList: Cd[] = [];
+    booksList: Book[] = [];
+    cdsList: Cd[] = [];
 
     books$ = new Subject<Book[]>();
     cds$ = new Subject<Cd[]>();
 
     constructor(private storage: Storage) {
-        //this.fetchList();
+        this.fetchList();
     }
 
-    booksList: Book[] = [
+    /*booksList: Book[] = [
         {
             name: 'Croc-Blanc',
             author: 'Jack London',
@@ -65,7 +65,7 @@ export class MainService {
             isLent: true,
             borrower: 'Larry Bird'
         }
-    ];
+    ];*/
 
     emitBooks() {
         this.books$.next(this.booksList.slice());
@@ -167,7 +167,7 @@ export class MainService {
         );
     }
 
-    /*fetchList() {
+    fetchList() {
         this.storage.get('books').then(
             (booksList) => {
                 booksList && booksList.length ? this.booksList = booksList.slice() : 0;
@@ -189,6 +189,6 @@ export class MainService {
                 console.log(`Cds Retrieve error : +  ${error}`);
             }
         );
-    }*/
+    }
 
 }

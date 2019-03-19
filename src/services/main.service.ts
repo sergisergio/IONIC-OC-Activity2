@@ -107,8 +107,8 @@ export class MainService {
                     reject(error);
                 }
             );
-            this.booksList.push(book);
-            this.cdsList.push(cd);
+            //this.booksList.push(this.book);
+            //this.cdsList.push(this.cd);
             this.saveList();
             this.emitBooks();
             this.emitCds();
@@ -148,9 +148,9 @@ export class MainService {
     fetchListBook() {
         this.storage.get('books').then(
             (list) => {
-            //    if (list && list.length) {
+                if (list && list.length) {
                     this.booksList = list.slice();
-            //    }
+                }
                 this.emitBooks();
             }
         );

@@ -9,6 +9,8 @@ import { TabsPage } from "../pages/tabs/tabs";
 import { SettingsPage } from "../pages/settings/settings";
 import { AuthPage } from '../pages/auth/auth';
 
+
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -31,16 +33,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
 
-      // Initialize Firebase
-      var config = {
-      apiKey: "AIzaSyCSGiVnq3-i2IY89Oay2AC5fn3H1wqHGWs",
-      authDomain: "ionic-oc-activity2.firebaseapp.com",
-      databaseURL: "https://ionic-oc-activity2.firebaseio.com",
-      projectId: "ionic-oc-activity2",
-      storageBucket: "ionic-oc-activity2.appspot.com",
-      messagingSenderId: "234030472057"
-      };
-      firebase.initializeApp(config);
+
       firebase.auth().onAuthStateChanged(
         (user) => {
           if (user) {

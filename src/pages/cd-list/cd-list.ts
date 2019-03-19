@@ -30,6 +30,7 @@ export class CdListPage implements OnInit, OnDestroy{
                 this.cdsList = cds;
             }
         );
+        this.mainService.retrieveData();
         this.mainService.emitCds();
     }
 

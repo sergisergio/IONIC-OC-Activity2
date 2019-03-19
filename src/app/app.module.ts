@@ -17,7 +17,18 @@ import { AuthService } from '../services/auth.service';
 import { OptionsPage } from "../pages/options/options";
 import { AuthPage } from "../pages/auth/auth";
 import { IonicStorageModule } from '@ionic/storage';
+import * as firebase from 'firebase';
 
+// Initialize Firebase
+var config = {
+apiKey: "AIzaSyCSGiVnq3-i2IY89Oay2AC5fn3H1wqHGWs",
+authDomain: "ionic-oc-activity2.firebaseapp.com",
+databaseURL: "https://ionic-oc-activity2.firebaseio.com",
+projectId: "ionic-oc-activity2",
+storageBucket: "ionic-oc-activity2.appspot.com",
+messagingSenderId: "234030472057"
+};
+firebase.initializeApp(config);
 
 @NgModule({
   declarations: [
@@ -34,8 +45,8 @@ import { IonicStorageModule } from '@ionic/storage';
   ],
   imports: [
     BrowserModule,
-    IonicStorageModule.forRoot(),
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

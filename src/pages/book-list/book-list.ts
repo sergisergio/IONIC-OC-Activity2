@@ -32,6 +32,7 @@ export class BookListPage implements OnInit, OnDestroy {
          (books: Book[]) => {
              this.booksList = books;
          });
+     this.mainService.retrieveData();
      this.mainService.emitBooks();
     }
 

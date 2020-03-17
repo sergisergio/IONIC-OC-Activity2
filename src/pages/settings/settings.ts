@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ToastController, LoadingController, MenuController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { ToastController, LoadingController, MenuController, /*ModalController, */NavController, NavParams } from 'ionic-angular';
 import { MainService } from "../../services/main.service";
 
 @Component({
@@ -8,7 +8,7 @@ import { MainService } from "../../services/main.service";
 })
 export class SettingsPage {
 
-    constructor(private modalCtrl: ModalController,
+    constructor(/*private modalCtrl: ModalController,*/
                 private mainService: MainService,
                 private toastCtrl: ToastController,
                 private loadingCtrl: LoadingController,

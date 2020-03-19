@@ -21,7 +21,7 @@ import * as firebase from 'firebase';
 
 // Initialize Firebase
 var config = {
-apiKey: "XXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+apiKey: "AIzaSyCSGiVnq3-i2IY89Oay2AC5fn3H1wqHGWs",
 authDomain: "ionic-oc-activity2.firebaseapp.com",
 databaseURL: "https://ionic-oc-activity2.firebaseio.com",
 projectId: "ionic-oc-activity2",
